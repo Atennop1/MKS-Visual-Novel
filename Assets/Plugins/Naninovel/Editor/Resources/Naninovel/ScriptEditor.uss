@@ -1,0 +1,172 @@
+
+PaginationView {
+    left: -7px;
+    flex-direction: row;
+    margin-top: 4px;
+    -unity-text-align: lower-center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+#InfoLabel {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 4px;
+    -unity-text-align: middle-center;
+    /* background-color: #edeae1; */
+    /* border-color: #555555; */
+    /* border-width: 1px; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -unity-font-style: italic;
+    left: -7px;
+    white-space: normal;
+}
+
+.ScriptLine {
+    color: #000000;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.PlayedScriptLine > #Content {
+    border-width: 1px;
+    border-color: #00ff00;
+    background-color: #80ff80;
+}
+
+.PlayedScriptLine > #LineIndex {
+    background-color: #80ff80;
+}
+
+.WaitInputScriptLine > #Content {
+    border-width: 1px;
+    border-color: #ffff00;
+    background-color: #ffff80;
+}
+
+.WaitInputScriptLine > #LineIndex {
+    background-color: #ffff80;
+}
+
+.ScriptLine:hover #Content {
+    border-color: #948a69;
+}
+
+#Content {
+    height: 22px;
+    flex-wrap: nowrap;
+    border-width: 1px;
+    margin-left: 10px;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+#LineIndex {
+    height: 22px;
+    width: 24px;
+    font-size: 8px;
+    position: absolute;
+    left: -15px;
+    -unity-text-align: middle-center;
+    cursor: link;
+}
+
+.CommentContent {
+    background-color: #e5e5e5;
+    border-color: #e5e5e5;
+    -unity-font-style: italic;
+}
+
+.CommentIndex {
+    background-color: #ededed;
+}
+
+.LabelContent {
+    background-color: #d1e5cf;
+    border-color: #d1e5cf;
+}
+
+.LabelIndex {
+    background-color: #e2ede1;
+}
+
+.GenericTextContent {
+    background-color: #cfdfe5;
+    border-color: #cfdfe5;
+}
+
+.GenericTextIndex {
+    background-color: #e1eaed;
+}
+
+.DefineContent {
+    background-color: #dccfe5;
+    border-color: #dccfe5;
+}
+
+.DefineIndex {
+    background-color: #e8e1ed;
+}
+
+.CommandContent {
+    background-color: #e3decf;
+    border-color: #e3decf;
+}
+
+.CommandIndex {
+    background-color: #edeae1;
+}
+
+.ErrorContent {
+    background-color: #e3cfcf;
+    border-color: #e3cfcf;
+}
+
+.ErrorIndex {
+    background-color: #ede1e1;
+}
+
+.Inlined {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 2px;
+    -unity-text-align: middle-left;
+}
+
+#unity-text-input {
+    color: #000000;
+    min-width: 20px;
+    padding-top: 3px;
+    background-image: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-width: 0px;
+    border-radius: 0px;
+}
+
+#unity-text-input:hover, #unity-text-input:focus {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#unity-text-input:focus {
+    white-space: normal;
+}
+
+#InputLabel, #InputLabel:focus {
+    color: #000000;
+    min-width: 1px;
+}
+
+#unity-text-input {
+	-unity-text-align: upper-left;
+}
+
+.NamedParameterLabel {
+    margin-left: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.4);
+}

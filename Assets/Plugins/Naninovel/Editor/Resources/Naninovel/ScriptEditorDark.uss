@@ -1,0 +1,88 @@
+
+#LineIndex {
+    color: #d4d4d4;
+}
+
+.PlayedScriptLine > #Content {
+    border-color: #00ff00;
+    background-color: #408040;
+}
+
+.PlayedScriptLine > #LineIndex {
+    background-color: #408040;
+}
+
+.WaitInputScriptLine > #Content {
+    border-color: #ffff00;
+    background-color: #808040;
+}
+
+.WaitInputScriptLine > #LineIndex {
+    background-color: #808040;
+}
+
+.ScriptLine:hover #Content {
+    border-color: #3a79bb;
+}
+
+.CommentContent {
+    background-color: #616161;
+    border-color: #616161;
+}
+
+.CommentIndex {
+    background-color: #575757;
+}
+
+.LabelContent {
+    background-color: #586157;
+    border-color: #586157;
+}
+
+.LabelIndex {
+    background-color: #4f574e;
+}
+
+.GenericTextContent {
+    background-color: #575f61;
+    border-color: #575f61;
+}
+
+.GenericTextIndex {
+    background-color: #4e5557;
+}
+
+.CommandContent {
+    background-color: #615e57;
+    border-color: #615e57;
+}
+
+.CommandIndex {
+    background-color: #57554e;
+}
+
+.ErrorContent {
+    background-color: #615757;
+    border-color: #615757;
+}
+
+.ErrorIndex {
+    background-color: #574e4e;
+}
+
+#unity-text-input {
+    color: #ededed;
+    background-color: rgba(45, 45, 45, 0.35);
+}
+
+#unity-text-input:hover, #unity-text-input:focus {
+    background-color: rgba(45, 45, 45, 0.7);
+}
+
+#InputLabel, #InputLabel:focus {
+    color: #ededed;
+}
+
+.NamedParameterLabel {
+    background-color: rgba(45, 45, 45, 0.35);
+}
