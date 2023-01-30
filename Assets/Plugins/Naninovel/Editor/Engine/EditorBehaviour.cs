@@ -47,7 +47,7 @@ namespace Naninovel
 
         public Coroutine StartCoroutine (IEnumerator routine)
         {
-            
+            return null;
         }
 
         public void StopCoroutine (Coroutine routine)
