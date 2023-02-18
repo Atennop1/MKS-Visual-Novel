@@ -27,22 +27,18 @@ namespace Naninovel.UI
             get => stateManager.GlobalState.GetState<GlobalState>()?.LastSaveWasQuick ?? false;
             set => stateManager.GlobalState.SetState<GlobalState>(new GlobalState { LastSaveWasQuick = value });
         }
-        protected virtual Toggle QuickLoadToggle => quickLoadToggle;
         protected virtual Toggle SaveToggle => saveToggle;
         protected virtual Toggle LoadToggle => loadToggle;
-        protected virtual GameStateSlotsGrid QuickLoadGrid => quickLoadGrid;
         protected virtual GameStateSlotsGrid SaveGrid => saveGrid;
         protected virtual GameStateSlotsGrid LoadGrid => loadGrid;
 
         [Header("Tabs")]
-        [SerializeField] private Toggle quickLoadToggle = null;
-        [SerializeField] private Toggle saveToggle = null;
-        [SerializeField] private Toggle loadToggle = null;
+        [SerializeField] private Toggle saveToggle;
+        [SerializeField] private Toggle loadToggle;
 
         [Header("Grids")]
-        [SerializeField] private GameStateSlotsGrid quickLoadGrid = null;
-        [SerializeField] private GameStateSlotsGrid saveGrid = null;
-        [SerializeField] private GameStateSlotsGrid loadGrid = null;
+        [SerializeField] private GameStateSlotsGrid saveGrid;
+        [SerializeField] private GameStateSlotsGrid loadGrid;
 
         private const string titleLabel = "OnLoad";
 
@@ -64,10 +60,7 @@ namespace Naninovel.UI
             if (confirmationUI is null) throw new Exception("Confirmation UI is missing.");
 
             stateManager.OnGameSaveStarted += HandleGameSaveStarted;
-            stateManager.OnGameSaveFinished += HandleGameSaveFinished;
 
-            quickLoadGrid.Initialize(stateManager.Configuration.QuickSaveSlotLimit,
-                HandleQuickLoadSlotClicked, HandleDeleteQuickLoadSlotClicked, LoadQuickSaveSlotAsync);
             saveGrid.Initialize(stateManager.Configuration.SaveSlotLimit,
                 HandleSaveSlotClicked, HandleDeleteSlotClicked, LoadSaveSlotAsync);
             loadGrid.Initialize(stateManager.Configuration.SaveSlotLimit,
@@ -83,7 +76,7 @@ namespace Naninovel.UI
         protected override void Awake ()
         {
             base.Awake();
-            this.AssertRequiredObjects(QuickLoadToggle, SaveToggle, LoadToggle, QuickLoadGrid, SaveGrid, LoadGrid);
+            this.AssertRequiredObjects(SaveToggle, LoadToggle, SaveGrid, LoadGrid);
         }
 
         protected override void OnDestroy ()
@@ -91,10 +84,7 @@ namespace Naninovel.UI
             base.OnDestroy();
 
             if (stateManager != null)
-            {
                 stateManager.OnGameSaveStarted -= HandleGameSaveStarted;
-                stateManager.OnGameSaveFinished -= HandleGameSaveFinished;
-            }
         }
 
         protected virtual void SetPresentationMode (SaveLoadUIPresentationMode value)
@@ -102,23 +92,16 @@ namespace Naninovel.UI
             presentationMode = value;
             switch (value)
             {
-                case SaveLoadUIPresentationMode.QuickLoad:
+                case SaveLoadUIPresentationMode.QuickLoad or SaveLoadUIPresentationMode.Load:
                     LoadToggle.gameObject.SetActive(true);
-                    QuickLoadToggle.gameObject.SetActive(true);
-                    QuickLoadToggle.isOn = true;
-                    SaveToggle.gameObject.SetActive(false);
-                    break;
-                case SaveLoadUIPresentationMode.Load:
-                    LoadToggle.gameObject.SetActive(true);
-                    QuickLoadToggle.gameObject.SetActive(true);
                     LoadToggle.isOn = true;
+                    LoadToggle.onValueChanged.Invoke(true);
                     SaveToggle.gameObject.SetActive(false);
                     break;
                 case SaveLoadUIPresentationMode.Save:
                     SaveToggle.gameObject.SetActive(true);
                     SaveToggle.isOn = true;
                     LoadToggle.gameObject.SetActive(false);
-                    QuickLoadToggle.gameObject.SetActive(false);
                     break;
             }
         }
@@ -159,12 +142,6 @@ namespace Naninovel.UI
             HandleSaveSlotClicked(slotId, slotNumber);
         }
 
-        protected virtual void HandleQuickSaveSlotClicked (int slotNumber)
-        {
-            var slotId = stateManager.Configuration.IndexToQuickSaveSlotId(slotNumber);
-            HandleSaveSlotClicked(slotId, slotNumber);
-        }
-
         protected virtual async void HandleSaveSlotClicked (string slotId, int slotNumber)
         {
             SetInteractable(false);
@@ -197,38 +174,9 @@ namespace Naninovel.UI
             SaveGrid.BindSlot(slotNumber, null);
             LoadGrid.BindSlot(slotNumber, null);
         }
-
-        protected virtual async void HandleDeleteQuickLoadSlotClicked (int slotNumber)
-        {
-            var slotId = stateManager.Configuration.IndexToQuickSaveSlotId(slotNumber);
-            if (!slotManager.SaveSlotExists(slotId)) return;
-
-            if (!await confirmationUI.ConfirmAsync(DeleteSaveSlotMessage)) return;
-
-            slotManager.DeleteSaveSlot(slotId);
-            QuickLoadGrid.BindSlot(slotNumber, null);
-        }
-
         protected virtual void HandleGameSaveStarted (GameSaveLoadArgs args)
         {
             LastSaveWasQuick = args.Quick;
-        }
-
-        protected virtual async void HandleGameSaveFinished (GameSaveLoadArgs args)
-        {
-            if (!args.Quick) return;
-
-            // Shifting quick save slots by one to free the first slot.
-            for (int i = QuickLoadGrid.Slots.Count - 2; i >= 0; i--)
-            {
-                var currSlot = QuickLoadGrid.Slots[i];
-                var prevSlot = QuickLoadGrid.Slots[i + 1];
-                prevSlot.Bind(prevSlot.SlotNumber, currSlot.State);
-            }
-
-            // Setting the new quick save to the first slot.
-            var slotState = await stateManager.GameSlotManager.LoadAsync(args.SlotId);
-            QuickLoadGrid.BindSlot(1, slotState);
         }
 
         protected virtual async UniTask<GameStateMap> LoadSaveSlotAsync (int slotNumber)
