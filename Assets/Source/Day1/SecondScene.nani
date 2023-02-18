@@ -1,0 +1,13 @@
+Ноунейм: Пришёл, наконец.
+Ноунейм: Здраствуйте, я на собеседование.
+Ресепшн: Назовите Ваш код.
+Ноунейм: 228-14-88-1-984
+Ресепшн: Такого номера нет, уходите.
+
+@set OrwellName="???"
+@char Orwell.Riddle pose:UpCenter
+Orwell.Riddle: Здравствуйте, дорогой! Я как раз тебя ждал! Пойдём за мной. 
+
+@choice Подойти goto:ThirdSceneChoiceOne
+@choice Проигнорировать goto:ThirdSceneChoiceTwo
+

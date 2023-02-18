@@ -168,6 +168,43 @@ MonoBehaviour:
       guid: beeac1fe060569c4da2832a4f2244d01
   - Id: Scripts
     Resources:
-    - name: TestNaninovelScript
+    - name: EntryPoint
       pathPrefix: Scripts
-      guid: 035d3759db830814aa23ef543ce437b2
+      guid: e9f29d2249e44b79891931e995e8eedf
+    - name: FirstScene
+      pathPrefix: Scripts
+      guid: 97f3488c644440ff81fb78279188db61
+    - name: SecondScene
+      pathPrefix: Scripts
+      guid: 79c2bbad7a554b4fb480431564f3338e
+    - name: ThirdSceneChoiceOne
+      pathPrefix: Scripts
+      guid: 0671b8b3c9494967b129ca21ff294dcf
+    - name: ThirdSceneChoiceTwo
+      pathPrefix: Scripts
+      guid: b6ebe7848fdc4200a28c85b1c5dd58ac
+    - name: FourthScene
+      pathPrefix: Scripts
+      guid: 74fccf63e3ef440cb3e476846f249bd9
+    - name: FifthScene
+      pathPrefix: Scripts
+      guid: 6aca995850694fc3b3758bc751843835
+    - name: FirstDayEnd
+      pathPrefix: Scripts
+      guid: 1832111556a046fd99beec8677cd74f7
+  - Id: Characters/40ba9f80-1839-4bb0-9553-8b046d1a072b
+    Resources:
+    - name: Riddle
+      pathPrefix: Characters/Orwell
+      guid: c504307a7af92a6478ff3a0a66eb2047
+    - name: Idle
+      pathPrefix: Characters/Orwell
+      guid: 8c1624b1cd412784488e4d8b4c5e1896
+  - Id: Characters/a9556dee-a8a5-48eb-90e0-89ef2c304bba
+    Resources:
+    - name: Idle
+      pathPrefix: Characters/Mihal
+      guid: 81e7a284efe46ef44a35fc958d0e138b
+    - name: Riddle
+      pathPrefix: Characters/Mihal
+      guid: c504307a7af92a6478ff3a0a66eb2047

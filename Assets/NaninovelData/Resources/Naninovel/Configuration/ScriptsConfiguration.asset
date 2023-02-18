@@ -23,7 +23,7 @@ MonoBehaviour:
     Culture=neutral, PublicKeyToken=null
   InitializationScript: 
   TitleScript: 
-  StartGameScript: TestNaninovelScript
+  StartGameScript: EntryPoint
   AutoAddScripts: 1
   HotReloadScripts: 1
   WatchScripts: 1
